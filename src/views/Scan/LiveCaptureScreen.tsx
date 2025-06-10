@@ -161,7 +161,6 @@ const LiveCaptureScreen = () => {
     <View style={styles.container}>
       <Camera ref={cameraRef} style={styles.camera} device={camera} isActive={true} photo={true} video={true} audio={true} />
 
-      {/* Header avec ProgressBar */}
       <LinearGradient
         colors={['#007666', '#4CD4C2']}
         start={{ x: 0, y: 1 }}
@@ -176,7 +175,6 @@ const LiveCaptureScreen = () => {
         </View>
       </LinearGradient>
 
-      {/* Instructions */}
       <View style={styles.instructions}>
         {mode === 'photo' ? (
           <>
@@ -198,7 +196,6 @@ const LiveCaptureScreen = () => {
         </View>
       )}
 
-      {/* Boutons */}
       <View style={styles.controls}>
         <TouchableOpacity onPress={toggleMode}>
           <Text style={[styles.modeText, mode === 'video' ? styles.videoActive : styles.inactive]}>

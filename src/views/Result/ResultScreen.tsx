@@ -28,6 +28,7 @@ const ResultScreen = () => {
   const navigation = useNavigation<ResultNavigationType>();
   const route = useRoute<RouteType>();
   const paramScanId = route.params?.scanId;
+  console.log('ResultScreen param scanId:', paramScanId); 
 
   const { scan, measurements, modelUrl, history, loading} = useResultViewModel(paramScanId);
 
@@ -69,7 +70,7 @@ const ResultScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Header */}
+
       <LinearGradient
         colors={['#007666', '#4CD4C2']}
         start={{ x: 0, y: 1 }}
@@ -82,7 +83,6 @@ const ResultScreen = () => {
         </View>
       </LinearGradient>
 
-      {/* Contenu principal */}
       <View style={styles.mainSection}>
         <View style={styles.bodyContent}>
           <View style={styles.modelContainer}>
@@ -102,7 +102,7 @@ const ResultScreen = () => {
                 {METRICS_TO_DISPLAY.map(({ name, label }) => {
                   const metric = measurements.metrics?.find((m: any) => m.name === name);
                   if (!metric) {return null;}
-                  
+
                   const value = metric.unit === 'mm'
                     ? (metric.value / 10).toFixed(1)
                     : metric.value;
@@ -118,20 +118,16 @@ const ResultScreen = () => {
             )}
           </View>
         </View>
-        {/* Date du scan, centré */}
+
         <View style={styles.scanDateContainer}>
           <Text style={styles.scanDate}>Scan performed: {formattedDate}</Text>
         </View>
-        {/* Boutons */}
         <View style={styles.buttonRow}>
           <GradientButton title="Export" textStyle={styles.buttonText} style={styles.actionButton}/>
           <GradientButton title="Compare" onPress={() => navigation.navigate('Compare')} textStyle={styles.buttonText} style={styles.actionButton}/>
           <GradientButton title="Details" onPress={() => navigation.navigate('Evolution')} textStyle={styles.buttonText} style={styles.actionButton}/>
-
-
         </View>
 
-        {/* Historique */}
         <View style={styles.historySection}>
           <Text style={styles.historyTitle}>History</Text>
           <ScrollView horizontal contentContainerStyle={styles.historyList}>

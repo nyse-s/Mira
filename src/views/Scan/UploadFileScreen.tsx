@@ -24,13 +24,12 @@ const UploadScreen = () => {
     if (result.assets && result.assets.length > 0) {
       const originalUri = result.assets[0].uri || null;
       if (originalUri) {
-        // Redimensionner à 1080x1920 (max qualité demandée par Bodygram)
         const resized = await ImageResizer.createResizedImage(
           originalUri,
-          1080,    // width
-          1920,    // height
+          1080,
+          1920,
           'JPEG',
-          95       // quality
+          95
         );
         setFrontImageUri(resized.uri);
       }
@@ -42,7 +41,6 @@ const UploadScreen = () => {
     if (result.assets && result.assets.length > 0) {
       const originalUri = result.assets[0].uri || null;
       if (originalUri) {
-        // Redimensionner à 1080x1920
         const resized = await ImageResizer.createResizedImage(
           originalUri,
           1080,

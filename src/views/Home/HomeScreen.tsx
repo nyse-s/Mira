@@ -6,6 +6,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainTabParamList } from '../../navigation/MainTabParamList';
 import { ScanStackParamList } from '../../navigation/ScanStackParamList';
+import { ResultStackParamList } from '../../navigation/ResultStackParamList';
 import { useHomeViewModel } from '../../viewmodels/HomeViewModel';
 import Icon from 'react-native-vector-icons/Feather';
 import styles from './HomeStyles';
@@ -15,7 +16,10 @@ import { WebView } from 'react-native-webview';
 
 type NavigationType = CompositeNavigationProp<
   BottomTabNavigationProp<MainTabParamList, 'Home'>,
-  NativeStackNavigationProp<ScanStackParamList>
+  CompositeNavigationProp<
+    NativeStackNavigationProp<ResultStackParamList>,
+    NativeStackNavigationProp<ScanStackParamList>
+  >
 >;
 
 
@@ -31,6 +35,10 @@ const HomeScreen = () => {
 
   const { displayName, lastestScan, lastScanResult, history, loading } = useHomeViewModel(refreshKey);
 
+  const viewerUrl = lastScanResult?.modelurl
+    ? `https://mira-3d-viewer.vercel.app/model-viewer?model=${encodeURIComponent(lastScanResult.modelurl)}`
+    : null;
+
   if (loading) {
     return (
       <GradientScreenWrapper>
@@ -41,10 +49,6 @@ const HomeScreen = () => {
     );
   }
 
-  const viewerUrl = lastScanResult?.modelurl
-    ? `https://mira-3d-viewer.vercel.app/model-viewer?model=${encodeURIComponent(lastScanResult.modelurl)}`
-    : null;
-
   if (!lastestScan) {
     return (
       <GradientScreenWrapper>
@@ -53,7 +57,7 @@ const HomeScreen = () => {
           <Text style={{ color: "#fff", fontSize: 18, marginBottom: 32, textAlign: 'center' }}>
             To use MIRA, please perform your first scan.
           </Text>
-          <GradientButton title="START FIRST SCAN" onPress={() => navigation.navigate('Scan', { screen: 'ScanChoice'})} style={{ width: 210, height: 50 }}/>
+          <GradientButton title="START FIRST SCAN" onPress={() => navigation.navigate('Scan', { screen: 'ScanChoice'} as never )} style={{ width: 210, height: 50 }}/>
         </View>
       </GradientScreenWrapper>
     );
@@ -98,7 +102,7 @@ const HomeScreen = () => {
                 style={styles.detailsButton}
                 onPress={() => {
                   if (lastestScan?.id) {
-                    navigation.navigate('Result', { scanId: lastestScan.id });
+                    navigation.navigate('Result', { screen: 'Result', params: { scanId: lastestScan.id  } } as never);
                   }
                 }}>
                 <Text style={styles.detailsText}>Details</Text>
@@ -113,14 +117,14 @@ const HomeScreen = () => {
               <Text style={styles.historyText}>
                 {scan.date ? new Date(scan.date).toLocaleDateString() : 'No date'}
               </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Result', { scanId: scan.id })}>
+              <TouchableOpacity onPress={() => navigation.navigate('Result', { screen: 'Result', params: { scanId: scan.id } } as never)}>
                 <Icon name="eye" size={20} color="#fff" />
               </TouchableOpacity>
             </View>
           ))}
         </View>
         {/* Start Scan Button */}
-        <GradientButton title="START SCAN" onPress={() => navigation.navigate('Scan', { screen: 'ScanChoice'})} style={styles.fixedScanButton}/>
+        <GradientButton title="START SCAN" onPress={() => navigation.navigate('Scan', { screen: 'ScanChoice'} as never)} style={styles.fixedScanButton}/>
       </ScrollView>
     </View>
   );

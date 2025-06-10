@@ -54,14 +54,7 @@ const MainNavigator = () => {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Scan" component={ScanNavigator}/>
-      <Tab.Screen name="Result" component={ResultNavigator} listeners={{
-        tabPress: (e) => {
-          e.preventDefault();
-          navigationRef.navigate('Result', {
-            screen: 'Result',
-          });
-        },
-      }}/>
+      <Tab.Screen name="Result" component={ResultNavigator}/>
       <Tab.Screen name="Profile" component={ProfileNavigator} listeners={{
         tabPress: (e) => {
           e.preventDefault();
