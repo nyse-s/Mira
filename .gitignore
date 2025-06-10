@@ -1,0 +1,15 @@
+# Build directories
+android/app/build/
+android/app/.cxx/
+ios/build/
+
+# Binary files
+*.apk
+*.a
+*.so
+*.o
+
+# React Native artifacts
+node_modules/
+.expo/
+dist/

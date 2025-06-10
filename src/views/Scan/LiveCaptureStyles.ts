@@ -1,0 +1,143 @@
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    top: -40,
+    marginBottom: -70,
+  },
+  camera: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: -1,
+  },
+  header: {
+    paddingTop: 50,
+    paddingHorizontal: 20,
+    paddingBottom: 45,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    zIndex: 1,
+  },
+  progressBar: {
+    flex: 1,
+    height: 9,
+    backgroundColor: '#d3f4ef',
+    borderRadius: 4,
+    marginTop: 40,
+    marginLeft: 20,
+    marginRight: 20,
+    overflow: 'hidden',
+  },
+  progress: {
+    height: 9,
+    backgroundColor: '#FF6B6B',
+    borderRadius: 4,
+  },
+  instructions: {
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#00C2A8',
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#00C2A8',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  controls: {
+    position: 'absolute',
+    bottom: 140,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    zIndex: 1,
+  },
+  modeText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  videoInstructionBlock: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  videoInstructionText: {
+    color: '#00C2A8',
+    fontSize: 14,
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+  inactive: {
+    color: '#00C2A8',
+  },
+  photoActive: {
+    color: '#FF6B6B',
+  },
+  videoActive: {
+    color: '#FF6B6B',
+  },
+  timerOverlay: {
+    position: 'absolute',
+    top: '40%',
+    alignSelf: 'center',
+    backgroundColor: '#00000080',
+    padding: 20,
+    borderRadius: 60,
+  },
+  timerText: {
+    fontSize: 50,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  captureButton: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 6,
+  },
+  photoCapture: {
+    backgroundColor: '#00C2A8',
+    borderWidth: 3,
+    borderColor: '#fff',
+  },
+  videoCapture: {
+    backgroundColor: '#FF6B6B',
+    borderWidth: 3,
+    borderColor: '#00C2A8',
+  },
+  photoInnerCircle: {
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#00C2A8',
+    borderWidth: 2,
+    borderColor: '#fff',
+  },
+  videoDot: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+  },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

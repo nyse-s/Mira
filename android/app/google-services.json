@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "805834771609",
+    "project_id": "mira-5129f",
+    "storage_bucket": "mira-5129f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805834771609:android:0c9c81b1811e94c476bc08",
+        "android_client_info": {
+          "package_name": "com.mira"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcNVjgbJdYXpNEJ8zUtq31XTzGNKNoAwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

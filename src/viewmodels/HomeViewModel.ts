@@ -1,0 +1,43 @@
+import { useAuth } from '../contexts/AuthContext';
+import { useEffect, useState } from 'react';
+import { Scan } from '../models/Scan';
+import { ScanResult } from '../models/ScanResult';
+import { getScansByUserId } from '../services/ScanService';
+import { getScanResultByScanId } from '../services/ScanResultService';
+
+export const useHomeViewModel = (refreshKey = 0) => {
+    const { supabaseUser } = useAuth();
+    const [displayName, setDisplayName] = useState('');
+    const [scans, setScans] = useState<Scan[]>([]);
+    const [lastScanResult, setLastScanResult] = useState<ScanResult | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        const fetchData = async () => {
+            if (supabaseUser) {
+                setDisplayName(supabaseUser.displayname || '');
+                const userScans = await getScansByUserId(supabaseUser.id);
+                setScans(userScans || []);
+                if (userScans && userScans.length > 0) {
+                    const result = await getScanResultByScanId(userScans[0].id);
+                    setLastScanResult(result);
+                }
+            }
+        };
+        fetchData();
+        setLoading(false);
+    }, [supabaseUser, refreshKey]);
+
+    const lastestScan = scans[0];
+    const history = scans.slice(1);
+
+    return {
+        displayName,
+        lastestScan,
+        lastScanResult,
+        history,
+        loading,
+    };
+
+};
