@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
             const updated = await getUserById(firebaseUser.uid);
             setSupabaseUser(updated);
         }
-    }
+    };
 
     return (
         <AuthContext.Provider value={{ firebaseUser, supabaseUser, isAuthenticated: !!firebaseUser, loading, logout, refreshUserFromDb }}>
