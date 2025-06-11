@@ -17,10 +17,7 @@ export const useHomeViewModel = (refreshKey = 0) => {
 
         const fetchData = async () => {
             setLoading(true);
-            // Wait for supabaseUser to be defined (do not set loading to false until it is checked!)
             if (!supabaseUser) {
-                // If there's no user, keep loading=true if this is the first render
-                // but after login/logout, we want to eventually stop loading
                 setDisplayName('');
                 setScans([]);
                 setLastScanResult(null);
